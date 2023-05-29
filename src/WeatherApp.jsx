@@ -28,9 +28,9 @@ const WeatherApp = () => {
 
     return (
         <div className='weather-app App'>
-            <h1>Weather App</h1>
+            <h1 className='font-bold text-5xl my-5'>Weather App</h1>
             <WeatherForm onSubmit={fetchWeatherData} />
-            {isLoading && <progress className="progress w-56"></progress>}
+            {isLoading && <progress className="progress w-96"></progress>}
             {error && <p>{error}</p>}
             {weatherData && (
                 <WeatherCard 
