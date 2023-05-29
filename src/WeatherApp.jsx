@@ -9,13 +9,14 @@ const WeatherApp = () => {
     const [isLoading, setIsLoading]= useState(false)
     const [error, setError]= useState(null)
     const [cityInput, setCityInput] = useState('');
+    console.log(process.env.REACT_APP_API_KEY);
     // console.log(weatherData);
     const fetchWeatherData = async (city) => {
       try {
         setIsLoading(true);
   
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=befc3cd4fdf7535bb2d9259d62ac6af5`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
         );
   
         setWeatherData(response.data);
