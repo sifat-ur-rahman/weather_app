@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const WeatherForm = ({ onSubmit, value, onChange }) => {
   
-
-  
-
   return (
     <form onSubmit={onSubmit}>
       <input
