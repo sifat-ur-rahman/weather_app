@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
 
-const WeatherForm = ({ onSubmit }) => {
-  const [city, setCity] = useState('');
+const WeatherForm = ({ onSubmit, value, onChange }) => {
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(city);
-  };
+  
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <input
         type="text"
+        className="input input-bordered input-accent w-full max-w-xs my-6"
         placeholder="Enter city"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <button type="submit">Get Weather</button>
+        value={value}
+        onChange={onChange}
+      /><br/>
+      <button className="btn btn-outline btn-success mb-5" type="submit">Get Weather</button>
     </form>
   );
 };

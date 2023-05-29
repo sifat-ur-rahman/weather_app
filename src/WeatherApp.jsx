@@ -8,6 +8,7 @@ const WeatherApp = () => {
     const [weatherData, setWeatherData]= useState(null)
     const [isLoading, setIsLoading]= useState(false)
     const [error, setError]= useState(null)
+    const [cityInput, setCityInput] = useState('');
     // console.log(weatherData);
     const fetchWeatherData = async (city) => {
       try {
@@ -20,18 +21,29 @@ const WeatherApp = () => {
         setWeatherData(response.data);
         setIsLoading(false);
         setError(null);
+        setCityInput('')
       } catch (error) {
         setError('Error fetching weather data.');
         setIsLoading(false);
+        setWeatherData(null);
+        setCityInput('');
       }
+    };
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+      fetchWeatherData(cityInput);
+    };
+    const handleInputChange = (e) => {
+      setCityInput(e.target.value);
     };
 
     return (
         <div className='weather-app App'>
             <h1 className='font-bold text-5xl my-5'>Weather App</h1>
-            <WeatherForm onSubmit={fetchWeatherData} />
+            <WeatherForm onSubmit={handleFormSubmit} value={cityInput}
+        onChange={handleInputChange} />
             {isLoading && <progress className="progress w-96"></progress>}
-            {error && <p>{error}</p>}
+            {error && <p className='text-2xl font-bold text-red-700'>{error}</p>}
             {weatherData && (
                 <WeatherCard 
                 city={weatherData.name}
